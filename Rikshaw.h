@@ -13,7 +13,7 @@ public:
     Rikshaw();
     Rikshaw(SDL_Texture* image, int x, int y);
     ~Rikshaw();
-    void Draw();
+    void Draw(SDL_Renderer* gRenderer);
     void Move(int direction);
     void fellIntoGutter();
     void accident();

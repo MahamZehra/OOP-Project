@@ -9,5 +9,5 @@ public:
     GadaGari();
     GadaGari(SDL_Texture* image, int x, int y);
     ~GadaGari();
-    void Draw();
+    void Draw(SDL_Renderer* gRenderer);
 };

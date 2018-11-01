@@ -9,5 +9,5 @@ private:
 public:
     Vehicle();
     virtual ~Vehicle();
-    virtual void Draw() = 0;
+    virtual void Draw(SDL_Renderer* gRenderer) = 0;
 };

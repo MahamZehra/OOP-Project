@@ -9,5 +9,5 @@ public:
     Truck();
     Truck(SDL_Texture* image, int x, int y);
     ~Truck();
-    void Draw();
+    void Draw(SDL_Renderer* gRenderer);
 };

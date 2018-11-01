@@ -9,5 +9,5 @@ public:
     Bus();
     Bus(SDL_Texture* image, int x, int y);
     ~Bus();
-    void Draw();
+    void Draw(SDL_Renderer* gRenderer);
 };
