@@ -2,12 +2,13 @@
 #include <SDL2_image/SDL_image.h>
 #include "Vehicle.h"
 
-class Truck : public Vehicle
+class Vehicle
 {
 private:
+    SDL_Rect mover;
+    SDL_Texture* image;
 public:
-    Truck();
-    Truck(SDL_Texture* image, int x, int y);
-    ~Truck();
-    void Draw();
+    Vehicle();
+    virtual ~Vehicle();
+    virtual void Draw() = 0;
 };
