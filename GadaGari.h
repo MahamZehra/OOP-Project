@@ -5,9 +5,12 @@
 class GadaGari : public Vehicle
 {
 private:
+
+protected:
+
 public:
     GadaGari();
     GadaGari(SDL_Texture* image, int x, int y);
     ~GadaGari();
-    void Draw(SDL_Renderer* gRenderer);
+    void Render(SDL_Renderer* gRenderer);
 };

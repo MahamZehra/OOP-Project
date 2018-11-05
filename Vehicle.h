@@ -4,10 +4,10 @@
 class Vehicle
 {
 private:
-    SDL_Rect mover;
-    SDL_Texture* image;
+
+protected:
+
 public:
     Vehicle();
     virtual ~Vehicle();
-    virtual void Draw(SDL_Renderer* gRenderer) = 0;
 };

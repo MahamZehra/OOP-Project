@@ -9,11 +9,14 @@ class Rikshaw : public Vehicle
 private:
     bool alive;
     int health;
+
+protected:
+
 public:
     Rikshaw();
     Rikshaw(SDL_Texture* image, int x, int y);
     ~Rikshaw();
-    void Draw(SDL_Renderer* gRenderer);
+    void Render(SDL_Renderer* gRenderer);
     void Move(int direction);
     void fellIntoGutter();
     void accident();

@@ -5,9 +5,12 @@
 class Bus : public Vehicle
 {
 private:
+
+protected:
+
 public:
     Bus();
     Bus(SDL_Texture* image, int x, int y);
     ~Bus();
-    void Draw(SDL_Renderer* gRenderer);
+    void Render(SDL_Renderer* gRenderer);
 };
