@@ -10,7 +10,7 @@ protected:
 
 public:
     GadaGari();
-    GadaGari(SDL_Texture* image, int x, int y);
+    GadaGari(LTexture* image, int x, int y);
     ~GadaGari();
     void Render(SDL_Renderer* gRenderer);
 };

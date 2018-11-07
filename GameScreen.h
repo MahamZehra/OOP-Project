@@ -13,6 +13,4 @@ public:
     GameScreen(LTexture*);
     ~GameScreen();
     void Render(SDL_Renderer*);
-
-    // if p pressed, PauseScreen opens
 };

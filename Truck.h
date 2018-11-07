@@ -10,7 +10,7 @@ protected:
 
 public:
     Truck();
-    Truck(SDL_Texture* image, int x, int y);
+    Truck(LTexture* image, int x, int y);
     ~Truck();
     void Render(SDL_Renderer* gRenderer);
 };

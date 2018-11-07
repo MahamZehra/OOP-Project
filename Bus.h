@@ -10,7 +10,7 @@ protected:
 
 public:
     Bus();
-    Bus(SDL_Texture* image, int x, int y);
+    Bus(LTexture* image, int x, int y); //Position and sprite of bus
     ~Bus();
-    void Render(SDL_Renderer* gRenderer);
+    void Render(SDL_Renderer* gRenderer);   //display on screen
 };
