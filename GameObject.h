@@ -23,4 +23,5 @@ protected:
 public:
     GameObject(LTexture*, int, int);
     virtual ~GameObject();
+    virtual void Render(SDL_Renderer*) = 0;
 };
