@@ -9,7 +9,7 @@ class Rikshaw : public Vehicle
 private:
     bool alive;
     int health;
-    Rikshaw(SDL_Texture* image, int x, int y);
+    Rikshaw(LTexture* image, int x, int y);
     static Rikshaw instance = new Rikshaw(SDL_Texture*, 0, 0);
 
 protected:
