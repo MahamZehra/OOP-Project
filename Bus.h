@@ -2,15 +2,17 @@
 #include <SDL2_image/SDL_image.h>
 #include "Vehicle.h"
 
-class Bus : public Vehicle
+class ObstacleVehicle : public Vehicle
 {
 private:
+    int Speed;
 
 protected:
 
 public:
-    Bus();
-    Bus(LTexture* image, int x, int y); //Position and sprite of bus
-    ~Bus();
+    ObstacleVehicle();
+    ObstacleVehicle(LTexture* image, int x, int y); //Position and sprite of bus, truck or gadagari
+    ~ObstacleVehicle();
     void Render(SDL_Renderer* gRenderer);   //display on screen
+    
 };
