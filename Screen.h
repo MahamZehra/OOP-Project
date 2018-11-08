@@ -22,5 +22,5 @@ public:
     virtual ~Screen();
     virtual void Render(SDL_Renderer*) = 0; //generation of screen
     void mouseMotionEvents(int x, int y);   //handles mouse motion events on a screen
-    void mouseClickEvents(int x, int y,Mix_Chunk* buttonClick); //handles mouse click events on a screen
+    void mouseClickEvents(int x, int y); //handles mouse click events on a screen
 };
