@@ -1,4 +1,4 @@
-#pragma onc
+#pragma once
 
 #include "LTexture.h"
 
@@ -15,5 +15,5 @@ public:
     PauseScreen(LTexture*, LTexture*, LTexture*);
     ~PauseScreen();
     void Render(SDL_Renderer*);
-
+    void SaveProgess(char*, int);
 };
