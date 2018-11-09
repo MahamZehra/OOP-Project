@@ -11,7 +11,7 @@ protected:
 
 public:
     ObstacleVehicle();
-    ObstacleVehicle(LTexture* image, int x, int y); //Position and sprite of bus, truck or gadagari
+    ObstacleVehicle(LTexture* image, int, int, int, int); //Position, dimensions and sprite of bus, truck or gadagari
     ~ObstacleVehicle();
     void Render(SDL_Renderer* gRenderer);   //display on screen
     
