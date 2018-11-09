@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>412</y>
+      <w>100</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Character
+--
+-Point position;
+-int ascii_value;
+-int width;
+-int height;
+-SDL_Rect sprite_clip;
+-LTexture* sprite;
+--
++Character();
++Character(LTexture*, float , float , int );
++~Character();
++void Render(SDL_Renderer* , bool);
++void operator = (const Character&amp; );
+
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>636</x>
+      <y>140</y>
+      <w>84</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>EndScreen
+--
+-LTexture* button;
+-LTexture* font;
+--
++EndScreen(LTexture*, LTexture*, LTexture*)
++~EndScreen()
++void Render(SDL_Renderer*)
++void updateRecords(int )
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>404</x>
+      <y>132</y>
+      <w>84</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>ExcerptScreen
+--
++ExcerptScreen(LTexture*)
++~ExcerptScreen()
++void Render(SDL_Renderer*)
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>256</y>
+      <w>108</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>/GameObject/
+--
+#SDL_Rect position
+#LTexture* image
+#string name = ""   
+
+--
++GameObject(LTexture*, int, int, int, int)
++virtual ~GameObject()
+/+virtual void Render(SDL_Renderer*) = 0/
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>120</y>
+      <w>84</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>GameScreen
+--
++GameScreen(LTexture*);
++~GameScreen();
++void Render(SDL_Renderer*);
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>716</x>
+      <y>464</y>
+      <w>84</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Gutter
+--
+-LTexture* image
+--
++Gutter(LTexture*)
++~Gutter()
++void Render(SDL_Renderer*)
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>156</x>
+      <y>260</y>
+      <w>364</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>LTexture
+--
+-SDL_Texture* texture
+-int width
+-int height
+--
++LTexture()
++~LTexture()
++bool LoadFromFile(string , SDL_Renderer*)
++void Free()
++void SetColor( Uint8 , Uint8 , Uint8 )
++void SetBlendMode( SDL_BlendMode )
++void SetAlpha( Uint8 )
++void Render( int , int , SDL_Rect* = NULL, double  = 0.0, SDL_Point* = NULL, SDL_RendererFlip = SDL_FLIP_NONE, SDL_Renderer*  = NULL )
++int GetWidth()
++int GetHeight()
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>752</x>
+      <y>144</y>
+      <w>124</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>PauseScreen
+--
+-SDL_Rect screen
+-LTexture* button
+-LTexture* font
+--
++PauseScreen(LTexture*, LTexture*, LTexture*)
++~PauseScreen();
++void Render(SDL_Renderer*);
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>376</y>
+      <w>164</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Rikshaw
+--
+-bool alive
+-int health
+-Rickshaw(LTexture* , int, int, int, int )
+-static Rikshaw instance = new Rikshaw(LTexture*, 0, 0, int ,int )
+--
++~Rikshaw()
++void Render(SDL_Renderer* )
++void Move(int )
++void fellIntoGutter()
++void accident()
++ static Rikshaw getObject()    
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>284</x>
+      <y>132</y>
+      <w>84</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>StartScreen
+--
+-LTexture* button;
+-LTexture* font;
+--
++StartScreen(LTexture*, LTexture*, LTexture*);
++~StartScreen();
++void Render(SDL_Renderer*);
++void LoadData()
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>816</x>
+      <y>360</y>
+      <w>84</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Obstacle
+--
++Obtacle()
++virtual ~obstacle()
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>896</x>
+      <y>484</y>
+      <w>120</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>ObstacleVehicle
+--
+-int Speed
+--
++ObstacleVehicle()
++ObstacleVehicle(LTexture*,int , int , int, int )
++~ObstacleVehicle()
++void Render(SDL_Renderer* )
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>236</x>
+      <y>544</y>
+      <w>84</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>Point
+--
++int x
++int y
+--
++Point()
++Point(int , int )
++Point(const Point&amp; )</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>316</x>
+      <y>72</y>
+      <w>508</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>640.0;10.0;640.0;120.0;640.0;60.0;1250.0;60.0;1250.0;180.0;1250.0;60.0;900.0;60.0;900.0;170.0;900.0;60.0;320.0;60.0;320.0;150.0;320.0;60.0;10.0;60.0;10.0;150.0;10.0;60.0;640.0;60.0;640.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>748</x>
+      <y>388</y>
+      <w>252</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;150.0;10.0;150.0;10.0;190.0;10.0;150.0;610.0;150.0;610.0;240.0;610.0;150.0;270.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>176</y>
+      <w>56</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>120.0;10.0;120.0;210.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>160</y>
+      <w>80</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;180.0;80.0;10.0;80.0;10.0;250.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>856</x>
+      <y>272</y>
+      <w>12</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>28</y>
+      <w>348</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>850.0;10.0;10.0;10.0;10.0;580.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>496</y>
+      <w>12</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>316</x>
+      <y>496</y>
+      <w>72</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;120.0;10.0;120.0;170.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>8</y>
+      <w>528</w>
+      <h>644</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>1300.0;20.0;40.0;10.0;10.0;1590.0;1100.0;1590.0;1100.0;1370.0;1100.0;1590.0;10.0;1590.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>188</y>
+      <w>12</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>364</y>
+      <w>228</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>550.0;340.0;10.0;340.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>224</y>
+      <w>516</w>
+      <h>364</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1110.0;790.0;1110.0;890.0;1270.0;890.0;1270.0;10.0;310.0;10.0;310.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>816</x>
+      <y>248</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>ObstacleFactory
+--
++Obstacle getObject(string)
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>324</y>
+      <w>152</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0;10.0;70.0;10.0;120.0;10.0;70.0;290.0;70.0;290.0;160.0;360.0;160.0;290.0;160.0;290.0;70.0;10.0;70.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>364</y>
+      <w>12</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>204</y>
+      <w>280</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>680.0;10.0;680.0;40.0;120.0;40.0;120.0;150.0;10.0;150.0;120.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>512</x>
+      <y>196</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>400.0;10.0;400.0;30.0;10.0;30.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>304</y>
+      <w>152</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>92</x>
+      <y>452</y>
+      <w>104</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Word
+--
+-Point position                
+-string text               
+-int wordLen                   
+-int width                      
+-int height
+-LTexture* spriteSheetTexture
+-Character* char_word    
+--
++Word()
++Word(std::string, LTexture*, float, float )
++~Word()
++void Render(SDL_Renderer*)                 
++int getLength()
++int getWidth()
++void form_Word(std::string)               
++void operator = (const Word&amp;)              
++string getText()
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>536</y>
+      <w>52</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;100.0;110.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>388</y>
+      <w>100</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0;170.0;10.0;170.0;120.0;230.0;120.0;170.0;120.0;170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>28</x>
+      <y>300</y>
+      <w>136</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>160.0;490.0;10.0;490.0;10.0;10.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>320</y>
+      <w>76</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>170.0;140.0;170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>364</y>
+      <w>12</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>552</y>
+      <w>272</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;200.0;660.0;200.0;660.0;10.0;660.0;200.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>0</y>
+      <w>116</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>/Screen/
+--
+-int screenWidth
+-int screenHeight
+-LTexture* background
+-int numOfBtns  
+-Button* buttons = nullptr
+--
++Screen(LTexture)
++virtual~Screen()
+/+virtualvoid Render(SDL_Renderer*) = 0/
++voidmouseMotionEvents(int , int )
++voidmouseClickEvents(int , int ,)
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>412</y>
+      <w>100</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Button
+--
+-int width                  
+-int height                
+-string text           
+-word* Word             
+-SDL_Rect spriteClips[4]   
+-LTexture* texture_button   
+-Point position             
+-int button_state
+--
++Button()
++Button(LTexture*,string, float, float)
++void Render(SDL_Renderer*)
++~Button()
++Point getPosition()
++int getWidth()
++int getHeight()
++string getText()
++void shift_state(State)              
++void operator = (const Button&amp; )
++bool clicked()
+
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
