@@ -5,13 +5,12 @@
 class Gutter : public GameObject
 {
 private:
-    SDL_Rect mover;     //to know the position/ width and height
     LTexture* image;
 
 protected:
 
 public:
-    Gutter(LTexture*);
+    Gutter(LTexture*, int, int, int, int);
     ~Gutter();
     void Render(SDL_Renderer* gRenderer);
 };
