@@ -16,12 +16,12 @@ class GameObject
 private:
 
 protected:
-    SDL_Rect position;  //Position of the object
+    SDL_Rect position;  //Position and dimensions of the object
     LTexture* image; //Sprite/Image of the object
     string name = "";   //Name of object
 
 public:
-    GameObject(LTexture*, int, int);
+    GameObject(LTexture*, int, int, int, int);
     virtual ~GameObject();
     virtual void Render(SDL_Renderer*) = 0;
 };
