@@ -5,7 +5,6 @@
 class Gutter : public Obstacle
 {
 private:
-    LTexture* image;
 
 protected:
 
