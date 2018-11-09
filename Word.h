@@ -5,7 +5,7 @@
 //-----------------------------------WORD CLASS-----------------//
 class Word
 {
-    public:
+    private:
         Point position;                 //position of the word
         std::string text;               //text that the object word contains
         //to assist in the size of the button
@@ -18,7 +18,7 @@ class Word
 
     protected:
 
-    private:
+    public:
         Word();
         Word(std::string, LTexture*, float, float );
         ~Word();
