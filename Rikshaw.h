@@ -9,8 +9,8 @@ class Rikshaw : public GameObject
 private:
     bool alive;
     int health;
-    Rikshaw(SDL_Texture* image, int, int, int, int);
-    static Rikshaw instance = new Rikshaw(SDL_Texture*, 0, 0);
+    Rikshaw(LTexture* image, int, int, int, int);
+    static Rikshaw instance = new Rikshaw(LTexture*, 0, 0, int, int);
 
 protected:
 
