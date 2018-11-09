@@ -2,7 +2,7 @@
 #include <SDL2_image/SDL_image.h>
 #include "Vehicle.h"
 
-enum DIRECTION{UP,LEFT,RIGHT};
+enum DIRECTION{UP,LEFT,RIGHT,BACK};
 
 class Rikshaw : public Vehicle
 {
