@@ -1,10 +1,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-#include "Vehicle.h"
+#include "GameObject.h"
 
 enum DIRECTION{UP,LEFT,RIGHT,BACK};
 
-class Rikshaw : public Vehicle
+class Rikshaw : public GameObject
 {
 private:
     bool alive;
