@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameObject.h"
+#include "Obstacle.h"
 
-class Gutter : public GameObject
+class Gutter : public Obstacle
 {
 private:
     LTexture* image;
