@@ -1,7 +1,11 @@
+#pragma once
+
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-class Obstacle : public GameObjects
+#include "GameObject.h"
+
+class Obstacle : public GameObject
 {
 private:
 
