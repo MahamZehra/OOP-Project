@@ -6,7 +6,8 @@
 #include "LTexture.h"
 #include <iostream>
 #include "Character.h"
-
+#include "Word.h"
+#include "Button.h"
 
 using namespace std;
 
@@ -15,6 +16,8 @@ const int SCREEN_HEIGHT = 650;
 LTexture ButtonTexture;
 LTexture CharacterTexture;
 
+Button* buttons = NULL;
+std::string ButtonText[3]={"CONTINUE", "NEW GAME","  EXIT  "};
 //Starts up SDL and creates window
 bool init();
 
@@ -89,7 +92,7 @@ bool loadMedia()
 {
 	///Loading success flag
 	bool success = true;
-	if( !ButtonTexture.loadTexture( "button_see.png", gRenderer) )
+	if( !ButtonTexture.loadTexture( "1.jpg", gRenderer) )
 	{
 		printf( "Failed to load buttons!\n" );
 		success = false;
@@ -102,7 +105,7 @@ bool loadMedia()
 
     }
 	else
-    {
+    { 
         ///Set standard alpha blending
         ButtonTexture.setBlendMode( SDL_BLENDMODE_BLEND );
     }
@@ -126,7 +129,8 @@ void close()
 	IMG_Quit();
 	SDL_Quit();
 }
-int main(int argv, char** args )
+
+int main(int argv, char** args)
 {
     //Start up SDL and create window
 	if( !init() )
@@ -135,6 +139,7 @@ int main(int argv, char** args )
 	}
 	else
 	{
+
 		//Load media
 		if( !loadMedia() )
 		{
@@ -142,9 +147,25 @@ int main(int argv, char** args )
 		}
 		else
 		{
-		    ButtonTexture.RenderTexture(50, 100, gRenderer);
-		    Character obj(&CharacterTexture, 80, 150, 97);
-		    obj.Render(gRenderer);
+		    /*LTexture* newT = new LTexture;
+		    Button btn(&ButtonTexture,"CUTIE", 150,200);
+		    //buttons = new Button[3];
+    /*for(int i=0; i<3; i++)
+    {
+        buttons[i] = Button(&ButtonTexture,ButtonText[i],100, 16 + 50);
+        //posY+=100;
+    }*/
+//		    Button but(newT,"CUTIE", 250,200);
+		    //ButtonTexture.RenderTexture(50, 100, gRenderer);
+		    //Character obj(&CharacterTexture, 150, 150, 121);
+
+		    //obj.Render(gRenderer);
+		    //Word hi;
+		    //Word hi("crazy", &CharacterTexture, 300, 200);
+		    //hi.Render(gRenderer);
+		    Button bro(&ButtonTexture,&CharacterTexture,"faizan", 300, 200);
+		    bro.Render(gRenderer);
+
 
 			//Main loop flag
 			bool quit = false;
