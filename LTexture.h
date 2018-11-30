@@ -16,6 +16,7 @@ private:
 
 public:
     //constructor destructor
+    //int getWidth();
     LTexture();
     ~LTexture();
 
