@@ -21,6 +21,7 @@ protected:
     string name = "";   //Name of object
 
 public:
+    GameObject(){}
     GameObject(LTexture*, int, int, int, int);
     virtual ~GameObject();
     virtual void Render(SDL_Renderer*) = 0;
