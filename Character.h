@@ -14,8 +14,8 @@ class Character
 private:
     Point m_position; //Position of the Character
     int m_character_value = 0; //ascii value of the Character
-    int m_width; //width of character
-    int m_height; //height of character
+    int mc_width; //width of character
+    int mc_height; //height of character
     SDL_Rect m_spriteClips; //clip specific to the Character
     LTexture* m_spriteSheetTexture; //font image
 public:
@@ -24,6 +24,7 @@ public:
     ~Character();
     void Render(SDL_Renderer* gRenderer);
     void operator = (const Character& cpy); //operator overloading for assignment operatot
+
 };
 
 

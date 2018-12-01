@@ -60,6 +60,7 @@ void LTexture::RenderTexture(int x, int y, SDL_Renderer* gRenderer, SDL_Rect* cl
 {
     SDL_Rect rectCoordinates = {x, y, m_width, m_height};
 
+
     //width and height according to the clipped part
     if(clip != NULL)
     {

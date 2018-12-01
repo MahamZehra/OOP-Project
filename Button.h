@@ -1,45 +1,34 @@
 #pragma once
 #include "LTexture.h"
 #include "Point.h"
-#include "word.h"
+#include "Word.h"
 
-//-------------------------MOUSE STATES---------------------------------//
-enum mouse_state
-{
-	BUTTON_SPRITE_MOUSE_NORMAL = 0,
-	BUTTON_SPRITE_MOUSE_HOVER = 1,
-	BUTTON_SPRITE_MOUSE_DOWN = 2,
-	BUTTON_SPRITE_MOUSE_UP = 3,
-};
-
-//---------------------------class button---------------------------------//
+enum State{Normal, Hover, Clicked};                                 ///Enumerating three states of buttons
 
 class Button
 {
-    public:
-        Button();
-        Button(LTexture*, std:string, float, float);
-        void Render(SDL_Renderer*);
-        ~Button();
-        Point getPosition();
-        int getWidth();
-        int getHeight();
-        std:string getText();
-        void shift_state(State);                //changing the current state of the Button
-        void operator = (const Button& cpy);
-        bool clicked();                         //checks if button is pressed
+    int width;  //width of each of the three parts of the button
+    int ButtonWidth; //final width of the Button
+    int height; //height of the Button
+    std::string text;//Text on the button
+    Word* word; //object of word class to be rendered over the button
+    SDL_Rect spriteClips[3]; //sprite clips for each state of the button
+    LTexture* spriteSheetTexture; //Texture of image consisting of Buttons
+    Point position; //Position of the Button
+    int state; //current state of the Button
 
-    protected:
 
-    private:
-        int width;                  //width of the Button
-        int height;                 //height of the Button
-        std::string text;           //text to be put on the Button
-        word* Word;                 //object of the text to be put on the button
-        SDL_Rect spriteClips[4];    //sprites for 4 states of the buttons
-        LTexture* texture_button;   //texture of button
-        Point position;             //position of buttons
-        int button_state;           //state of the button_state
+public:
+
+    Button();
+    Button(LTexture*,LTexture*,std::string, float, float);
+    void Render(SDL_Renderer*);
+    ~Button();
+    Point getPosition();
+    int getWidth();
+    int getHeight();
+    std::string getText(); //get the text of the button
+    void changeState(State); //changes the current state of the button
+    void operator = (const Button& cpy); //operator overloading for assignment operator
+    bool clicked(); //tells whether button is clicked or not
 };
-
-#endif // BUTTON_H
