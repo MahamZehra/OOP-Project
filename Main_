@@ -1,0 +1,447 @@
+#include <iostream>
+#include "ExcerptScreen.h"
+#include "StartScreen.h"
+#include "PauseScreen.h"
+#include "SDL.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
+#include "SDL_mixer.h"
+
+
+using namespace std;
+
+const int SCREEN_WIDTH = 750;
+const int SCREEN_HEIGHT = 650;
+
+SDL_Window* gWindow = NULL;
+SDL_Renderer* gRenderer = NULL;
+TTF_Font* gFont = NULL;
+
+LTexture SplashScreen;
+LTexture SpriteSheet;
+LTexture Instructions;
+LTexture CommonBackground;
+LTexture ReSized;
+LTexture GameBackground;
+LTexture Countdown3;
+LTexture Countdown2;
+LTexture Countdown1;
+LTexture ButtonTexture;
+LTexture CharacterSprite;
+LTexture Pause;
+
+//Mix_Chunk* InSplash = NULL;
+//Mix_Chunk* Transfer = NULL;
+//Mix_Music* Options = NULL;
+//Mix_Chunk* CountDown = NULL;
+//Mix_Chunk* click = NULL;
+
+bool init();
+bool loadMedia();
+void close();
+
+bool init()
+{
+	///Initialization flag
+	bool success = true;
+
+	///Initialize SDL
+	if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) < 0 )
+	{
+		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+		success = false;
+	}
+	else
+	{
+		///Set texture filtering to linear
+		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
+		{
+			printf( "Warning: Linear texture filtering not enabled!" );
+		}
+
+		///Create window
+		gWindow = SDL_CreateWindow( "CRAZY RICKSHAW", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		if( gWindow == NULL )
+		{
+			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+			success = false;
+		}
+
+		else
+		{
+			///Create renderer for window
+			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
+            if( gRenderer == NULL )
+            {
+                printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+                success = false;
+            }
+			else
+			{
+				///Initialize renderer color
+				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0, 0xFF, 0xFF );
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if( !( IMG_Init( imgFlags ) & imgFlags ) )
+				{
+					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+					success = false;
+				}
+
+                if(TTF_Init() == -1)
+                {
+                    printf( "SDL_text could not initialize! SDL_ Error: %s\n", TTF_GetError() );
+                    success = false;
+                }
+
+                if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+                {
+                    printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+                    success = false;
+                }
+            }
+		}
+	}
+	return success;
+}
+
+bool LoadMedia()
+{
+    bool success = true;
+
+    if(!SplashScreen.LoadFromFile("Splash.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT))
+    {
+        printf( "Failed to load background texture!\n" );
+		success = false;
+    }
+
+    if(!SpriteSheet.LoadFromFile("DisplaySheet.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load sprite sheet texture!\n" );
+		success = false;
+    }
+
+    if(!Instructions.LoadFromFile("Instructions2.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Instructions1\n" );
+		success = false;
+    }
+
+    if(!CommonBackground.LoadFromFile("MenuBackground.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load common background!\n" );
+		success = false;
+    }
+
+    if(!ReSized.LoadFromFile("DisplaySheetResized.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to Resized sheet!\n" );
+		success = false;
+    }
+
+    if(!Countdown1.LoadFromFile("1.1.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Number 1!\n" );
+		success = false;
+    }
+
+    if(!Countdown2.LoadFromFile("1.2.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Number 2 sheet!\n" );
+		success = false;
+    }
+
+    if(!Countdown3.LoadFromFile("1.3.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Number 3!\n" );
+		success = false;
+    }
+
+    if(!GameBackground.LoadFromFile("GameBackground.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Game Background!\n" );
+		success = false;
+    }
+
+    if(!ButtonTexture.loadTexture("font.png", gRenderer))
+    {
+        printf( "Failed to load Game Background!\n" );
+		success = false;
+    }
+
+    if(!CharacterSprite.LoadFromFile("alpha.jpg", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Game Background!\n" );
+		success = false;
+    }
+
+    if(!Pause.LoadFromFile("PauseBackground.png", gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT ))
+    {
+        printf( "Failed to load Game Background!\n" );
+		success = false;
+    }
+
+    gFont = TTF_OpenFont( "Lazy.ttf", 14 );
+
+    if( gFont == NULL )
+    {
+        printf( "Failed to Sans font! SDL_ttf Error: %s\n", TTF_GetError() );
+        success = false;
+    }
+    else
+    {
+        SDL_Color textColor = { 0, 0, 0 };
+    }
+
+//    InSplash = Mix_LoadWAV( "ForSplash.wav" );
+//    if( InSplash == NULL )
+//    {
+//        printf( "Failed to load Splash sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+//        success = false;
+//    }
+//
+//    Transfer = Mix_LoadWAV( "Transfer.wav" );
+//    if( Transfer == NULL )
+//    {
+//        printf( "Failed to load Transfer sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+//        success = false;
+//    }
+//
+//    Options = Mix_LoadMUS( "Menu.wav" );
+//    if( Options == NULL )
+//    {
+//        printf( "Failed to load Options music! SDL_mixer Error: %s\n", Mix_GetError() );
+//        success = false;
+//    }
+//
+//    CountDown = Mix_LoadWAV( "CountDown.wav" );
+//    if( InSplash == NULL )
+//    {
+//        printf( "Failed to load Splash sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+//        success = false;
+//    }
+//
+//    click = Mix_LoadWAV( "click.wav" );
+//    if( InSplash == NULL )
+//    {
+//        printf( "Failed to click sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+//        success = false;
+//    }
+
+    return success;
+}
+
+void close()
+{
+	SplashScreen.Free();
+    SpriteSheet.Free();
+    Instructions.Free();
+    CommonBackground.Free();
+    Countdown1.Free();
+    Countdown2.Free();
+    Countdown3.Free();
+
+//    Mix_FreeChunk( InSplash );
+//    Mix_FreeChunk( Transfer );
+//
+//    Mix_FreeMusic( Options );
+
+    TTF_CloseFont( gFont );
+
+    Mix_CloseAudio();
+
+	SDL_DestroyRenderer( gRenderer );
+	SDL_DestroyWindow( gWindow );
+	gWindow = NULL;
+	gRenderer = NULL;
+//
+//    Mix_CloseAudio();
+    TTF_Quit();
+    IMG_Quit();
+	SDL_Quit();
+}
+int main(int argv, char** args )
+{
+   cout << "jbhfgeugh";
+   if (! init())
+    {
+        printf("Failed to initialize\n");
+    }
+    else
+    {
+        if(!LoadMedia())
+        {
+            printf( "Failed to load media!\n" );
+        }
+        else
+        {
+            bool quit = false;
+            bool SplashOn = true;
+            bool MenuOn = true;
+            bool PauseOn = false;
+            bool GameOn = false;
+            bool Win = false;
+            bool initialization = true;
+            bool mouseClicked = false;
+
+            Button* buttons = NULL;//will hold button(s) on the screen
+            int x,y;
+
+            ExcerptScreen first(&SplashScreen);
+            ExcerptScreen Instructs(&Instructions);
+            ExcerptScreen StartIn3(&Countdown3);
+            ExcerptScreen StartIn2(&Countdown2);
+            ExcerptScreen StartIn1(&Countdown1);
+            ExcerptScreen Game(&GameBackground);
+
+            PauseScreen Pausing(&Pause, &ButtonTexture);
+
+            ExcerptScreen List[4] = {Instructs, StartIn3, StartIn2, StartIn1};
+
+            StartScreen Menu(&CommonBackground, &ButtonTexture);
+            Menu.LoadData();
+
+            int Score = Menu.GetScore();
+            int Health = Menu.GetHealth();
+            int TimeLeft = Menu.GetTimeLeft();
+            int Level = Menu.GetLevel();
+
+            SDL_Event e;
+
+            while( !quit )
+            {
+                while( SDL_PollEvent( &e ) != 0 )
+                {
+                    if( e.type == SDL_QUIT )
+                    {
+                        quit = true;
+                    }
+
+                    while( SDL_PollEvent( &e ) != 0 )
+                    {
+                        //User requests quit
+                        if( e.type == SDL_QUIT )
+                        {
+                            quit = true;
+                        }
+                        SDL_GetMouseState(&x,&y);
+
+                        if (e.type==SDL_MOUSEBUTTONDOWN)
+                        {
+                            if(e.button.button==SDL_BUTTON_LEFT)
+                            mouseClicked=true;
+                        }
+
+                        if (e.type == SDL_MOUSEMOTION) //to handle all mouse motion events for all screens
+                        {
+
+                            Menu.mouseMotionEvents(x,y);
+                            Pausing.mouseMotionEvents(x,y);
+
+                        }
+
+                        if (e.type==SDL_MOUSEBUTTONUP && mouseClicked)
+                        {
+//                            Menu.mouseClickEvents( x, y, click);
+//                            Pausing.mouseClickEvents( x, y, click);
+                        }
+
+                        if(MenuOn)
+                        {
+                            buttons = Menu.getButtons();
+                            for (int i = 0; i < Menu.CountButtons(); i++)
+                            {
+                                if(buttons[i].getText() == "NEWGAME" && buttons[i].clicked())
+                                {
+                                    cout << "New" << endl;
+                                    MenuOn = false;
+                                    initialization = true;
+                                    GameOn = true;
+                                    break;
+                                }
+                                else if (buttons[i].getText() == "RESUME" && buttons[i].clicked())
+                                {
+                                    cout << "resume" << endl;
+                                    MenuOn = false;
+                                    break;
+
+                                }
+                                else if (buttons[i].getText() == "QUIT"  && buttons[i].clicked())
+                                {
+                                    quit=true;
+                                    break;
+                                }
+                            }
+                        }
+
+
+                        SDL_SetRenderDrawColor( gRenderer,  255, 255, 255, 255 );
+                        SDL_RenderPresent( gRenderer );
+
+                        if(SplashOn)
+                        {
+                            first.Render(gRenderer);
+
+                            SDL_RenderPresent( gRenderer );
+//
+//                            Mix_PlayChannel( -1, InSplash, 0 );
+
+                            first.RenderName(&ReSized, gRenderer);
+
+                            SDL_Delay(3000);
+
+                            SplashOn = false;
+                            MenuOn = true;
+//                            Mix_PlayChannel( -1, Transfer, 0 );
+                        }
+
+                        if(MenuOn)
+                        {
+//
+//                            if( Mix_PlayingMusic() == 0 )
+//                            {
+//                                if( Mix_PlayMusic( Options, -1 ) == -1 )
+//                                {
+//                                    return 1;
+//                                }
+//                            }
+//
+                            Menu.Render(gRenderer);
+                            Menu.RenderMovingObject(&ReSized, gRenderer);
+                            Menu.RenderButton(gRenderer);
+                            SDL_RenderPresent( gRenderer );
+                        }
+
+                        if (GameOn)
+                        {
+                            Game.Render(gRenderer);
+                            SDL_RenderPresent(gRenderer);
+                            if(initialization)
+                            {
+                                List[0].Render(gRenderer);
+                                SDL_RenderPresent(gRenderer);
+                                SDL_Delay(2000);
+
+//                                Mix_PlayChannel( -1, CountDown, 0 );
+                                for(int i = 1; i <= 3 ; i++)
+                                {
+                                    Game.Render(gRenderer);
+                                    List[i].Render(gRenderer);
+                                    SDL_RenderPresent(gRenderer);
+                                    SDL_Delay(1000);
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    close();
+    return 0;
+}
+
+
+
